@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import net.larr4k.emerald.Main;
 import net.larr4k.emerald.commands.MenuCommand;
 import net.larr4k.emerald.listeners.BlockBreak;
+import net.larr4k.emerald.listeners.BlockPlace;
 import net.larr4k.emerald.listeners.GlobalListeners;
 import ru.abstractcoder.benioapi.util.listener.QuickListener;
 
@@ -24,8 +25,9 @@ public class PrisonLoader {
     }
 
     protected void registerListeners() {
-        QuickListener.create().register(GlobalListeners.getPlugin());
-        QuickListener.create().register(BlockBreak.getPlugin());
+        QuickListener.create().register(GlobalListeners.getPlugin()).enableAll();
+        QuickListener.create().register(BlockBreak.getPlugin()).enableAll();
+        QuickListener.create().register(BlockPlace.getPlugin()).enableAll();
     }
 
     public void registerCommands() {

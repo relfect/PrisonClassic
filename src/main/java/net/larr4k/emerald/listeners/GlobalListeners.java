@@ -3,6 +3,7 @@ package net.larr4k.emerald.listeners;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import net.larr4k.emerald.Main;
 import net.larr4k.emerald.prison.PlayerData;
@@ -10,6 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import ru.abstractcoder.benioapi.board.sidebar.SidebarTemplate;
 import ru.abstractcoder.benioapi.board.text.SimpleText;
 import ru.abstractcoder.benioapi.board.text.UpdatableText;
@@ -30,10 +32,11 @@ public class GlobalListeners {
     public void onJoin(@NonNull PlayerJoinEvent e) {
         final Player player = e.getPlayer();
         loadBoard(player);
+        e.setJoinMessage(null);
 
     }
 
-    @NonNull
+    @ToString.Include
     public void loadBoard(@NonNull Player player) {
         plugin.getBenioApiInstance().getBoardApi()
                 .getSidebarService()
@@ -52,7 +55,14 @@ public class GlobalListeners {
                 .addLine(new UpdatableText("§fОнлайн: {online}", 30)
                         .applyUpdater(new PlaceholderTextUpdater()
                                 .add("{online}", Bukkit.getOnlinePlayers())))
+                .addEmptyLine()
+                .addLine(new SimpleText("     §eEmeraldMe.Ru"))
                 .update();
 
+    }
+
+    @EventHandler
+    public void onQuit(@NonNull PlayerQuitEvent e) {
+        e.setQuitMessage(null);
     }
 }
