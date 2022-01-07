@@ -15,7 +15,7 @@ import static ru.abstractcoder.benioapi.command.availability.CommandAvailabiliti
 @Getter
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class MenuCommand extends ParentCommand {
-
+//
     @Inject
     public MenuCommand(String label) {
         super("navigator");
