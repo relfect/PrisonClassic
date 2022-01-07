@@ -1,0 +1,7 @@
+name: PrisonClassic
+version: '${project.version}'
+main: net.larr4k.emerald.Loader
+api-version: 1.13
+depend:
+  - BenioApi
+authors: [ Larr4k ]
