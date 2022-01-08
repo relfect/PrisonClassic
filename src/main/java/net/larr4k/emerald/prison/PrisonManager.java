@@ -26,12 +26,12 @@ public class PrisonManager {
 
     public void save(@NonNull Player player) {
         PlayerData farmer = (PlayerData) this.getData();
-        Main.getMySQL().setPrisonStats(farmer);
+        Main.getMysql().setPrisonStats(farmer);
     }
 
     public void unLoadStats(Player player) {
         PlayerData farmer = (PlayerData) this.getData();
-        Main.getMySQL().setPrisonStats(farmer);
+        Main.getMysql().setPrisonStats(farmer);
         this.data.remove(player.getName());
     }
 

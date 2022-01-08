@@ -33,6 +33,7 @@ public class GlobalListeners {
         final Player player = e.getPlayer();
         loadBoard(player);
         e.setJoinMessage(null);
+        Main.getManager().loadStats(player);
 
     }
 
@@ -63,6 +64,8 @@ public class GlobalListeners {
 
     @EventHandler
     public void onQuit(@NonNull PlayerQuitEvent e) {
+        final Player player = e.getPlayer();
         e.setQuitMessage(null);
+        Main.getManager().unLoadStats(player);
     }
 }

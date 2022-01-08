@@ -1,8 +1,10 @@
 package net.larr4k.emerald.database;
 
 import com.zaxxer.hikari.HikariDataSource;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.experimental.FieldDefaults;
 import net.larr4k.emerald.Main;
 import net.larr4k.emerald.prison.PlayerData;
 import org.bukkit.entity.Player;
@@ -10,6 +12,7 @@ import org.bukkit.entity.Player;
 import java.sql.*;
 import java.util.StringJoiner;
 
+@FieldDefaults(level = AccessLevel.PUBLIC)
 public class MySQL {
 
     @Getter

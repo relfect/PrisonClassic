@@ -3,6 +3,7 @@ package net.larr4k.emerald;
 import lombok.Getter;
 import net.larr4k.emerald.database.MySQL;
 import net.larr4k.emerald.prison.PrisonLoader;
+import net.larr4k.emerald.prison.PrisonManager;
 import ru.abstractcoder.benioapi.BenioApiInstance;
 import ru.abstractcoder.benioapi.BenioPlugin;
 
@@ -14,6 +15,8 @@ public final class Main extends BenioPlugin {
     static PrisonLoader loader;
     @Getter
     static MySQL mysql;
+    @Getter
+    static PrisonManager manager;
 
     @Override
     protected void onPluginEnable() throws Throwable {
