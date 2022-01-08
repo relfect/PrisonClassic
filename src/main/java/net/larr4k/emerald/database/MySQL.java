@@ -4,9 +4,11 @@ import com.zaxxer.hikari.HikariDataSource;
 import lombok.Getter;
 import lombok.NonNull;
 import net.larr4k.emerald.Main;
+import net.larr4k.emerald.prison.PlayerData;
+import org.bukkit.entity.Player;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.*;
+import java.util.StringJoiner;
 
 public class MySQL {
 
@@ -47,5 +49,58 @@ public class MySQL {
 
         Connection con = null;
         PreparedStatement prepared = null;
+        try {
+            con = this.hikariDataSource.getConnection();
+            prepared = con.prepareStatement(tableConstructor.toString());
+            prepared.executeUpdate();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } finally {
+
+            if (prepared != null) {
+                try {
+                    prepared.close();
+                } catch (SQLException sql) {
+                    sql.printStackTrace();
+                }
+            }
+
+        }
+
+    }
+
+    public synchronized PlayerData getPlayerData(@NonNull String name, Player player) {
+        Connection connection = null;
+        Statement state = null;
+        ResultSet res = null;
+
+        PlayerData playerData = null;
+
+        try {
+            connection = this.hikariDataSource.getConnection();
+            state = connection.createStatement();
+            res = state.executeQuery("SELECT  * FROM " + this.database + ".MLF_PLAYERS WHERE player_name = '" + name + "';");
+
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return playerData;
+    }
+
+    public synchronized PlayerData setPrisonStats(@NonNull PlayerData data) {
+        Connection connection = null;
+        Statement state = null;
+        ResultSet res = null;
+
+        try {
+            connection = this.hikariDataSource.getConnection();
+            state = connection.createStatement();
+            res = state.executeQuery("SELECT  * FROM " + this.database + ".MLF_PLAYERS WHERE player_name = '" + data.getPlayer() + "';");
+            StringJoiner cultures = new StringJoiner(",");
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return data;
     }
 }

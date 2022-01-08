@@ -8,20 +8,20 @@ public class PlayerData {
     @Getter
     double blocks;
     @Getter
-    int balance;
+    long balance;
     @Getter
     String player;
     @Getter
     int level;
 
-    public PlayerData(@NonNull String player, @NonNull int balance, @NonNull double blocks, @NonNull int level) {
+    public PlayerData(String player, @NonNull long balance, @NonNull double blocks, @NonNull int level) {
         this.player = player;
-        this.balance = balance;
+        this.balance = 0L;
         this.blocks = blocks;
         this.level = level;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(long balance) {
         this.balance = balance;
     }
 
