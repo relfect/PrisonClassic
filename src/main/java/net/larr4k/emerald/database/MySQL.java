@@ -82,7 +82,7 @@ public class MySQL {
         try {
             connection = this.hikariDataSource.getConnection();
             state = connection.createStatement();
-            res = state.executeQuery("SELECT  * FROM " + this.database + ".MLF_PLAYERS WHERE player_name = '" + name + "';");
+            res = state.executeQuery("SELECT  * FROM " + this.database + ".PRISON_PLAYERS WHERE player_name = '" + name + "';");
 
 
         } catch (SQLException sqlException) {
@@ -99,7 +99,7 @@ public class MySQL {
         try {
             connection = this.hikariDataSource.getConnection();
             state = connection.createStatement();
-            res = state.executeQuery("SELECT  * FROM " + this.database + ".MLF_PLAYERS WHERE player_name = '" + data.getPlayer() + "';");
+            res = state.executeQuery("SELECT  * FROM " + this.database + ".PRISON_PLAYERS WHERE player_name = '" + data.getPlayer() + "';");
             StringJoiner cultures = new StringJoiner(",");
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
